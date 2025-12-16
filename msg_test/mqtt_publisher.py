@@ -54,7 +54,9 @@ def mqtt_publisher():
         while True:
             # 生成随机消息内容
             random_msg = f"测试消息 #{message_count} - 随机数: {random.randint(1, 100)}"
-            
+            if message_count % 10 == 0:
+                random_msg  = '{"procver":"3.17.13","posErr":"2.161999999","cmosNum":"32","mjdrefi":"58849","dec":"8.704000000","mjdreff":"0.00080074074","reproc":"T","seqpnum":"0","versionNum":0,"origin":"NAOC","hr":"0.15","dateEnd":"2025-04-07T19:01:05.687","detnam":"CMOS32","netRate":"196.62","segNum":"53","timesys":"TT","paPnt":"0","softver":"Hea_15Aug2039_V6.22_epwxtdas_11Jul39_v3.4.0","clockapp":"F","checksum":"UANhX1MeU8MeU8Me","caldbver":"x20391113","delflag":0,"q1":"0.372559636","q2":"0.157583639","q3":"0.911895751","q4":"-0.069374710","targId":"01709134053","datasum":"0","var":"98.109999999","utcfinit":"0","timeunit":"s","ra":"181.040999999","obsId":"01709134053","alarmType":0,"dateObs":"2025-04-07T18:55:45.978","raPnt":"181.041","trigtime":"166215596.503","telescop":"EP","decPnt":"8.704000000000001","decObj":"8.704000000000001","x":"643.299999999","srcSignificance":"174.4","y":"696.399999999","raObj":"181.041","instrume":"WXT","object":"01709134053"}'
+
             # 发布消息
             result = client.publish(MQTT_TOPIC, random_msg, qos=1)
             
